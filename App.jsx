@@ -1,19 +1,30 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, View, Image } from 'react-native'
+import { StyleSheet, Text, View, Image, Pressable } from 'react-native'
+import { useState } from 'react'
 
+import Clock from './components/Clock'
 import Button from './components/Button'
-import ImageViewer from './components/ImageViewer'
-const PlaceholderImage = require('./assets/images/background-image.png')
+import FortuneCard from './components/FortuneCard'
+import FortuneModal from './components/FortuneModal'
 
 export default function App() {
+  const [isModalVisible, setIsModalVisible] = useState(false)
+
+  const onAddSticker = () => {
+    setIsModalVisible(true)
+  }
+
+  const onModalClose = () => {
+    setIsModalVisible(false)
+  }
+
   return (
     <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <ImageViewer placeholderImageSource={PlaceholderImage} />
-      </View>
+      <Clock />
       <View style={styles.footerContainer}>
-        <Button label='Choose a photo' />
-        <Button label='Use this photo' />
+        <FortuneCard theme='primary' />
+        <Button theme='primary' label='확 인' />
+        <Button theme='hurt' label='아파요' />
       </View>
       <StatusBar style='auto' />
     </View>
@@ -23,7 +34,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#25292e',
+    backgroundColor: '#FEFCD9',
     alignItems: 'center',
   },
   imageContainer: {
@@ -38,5 +49,13 @@ const styles = StyleSheet.create({
   footerContainer: {
     flex: 1 / 3,
     alignItems: 'center',
+  },
+  optionsContainer: {
+    position: 'absolute',
+    bottom: 80,
+  },
+  optionsRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
   },
 })

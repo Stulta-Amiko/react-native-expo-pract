@@ -1,6 +1,63 @@
 import { StyleSheet, View, Pressable, Text } from 'react-native'
+import FontAwesome from '@expo/vector-icons/FontAwesome'
 
-export default function Button({ label }) {
+export default function Button({ label, theme, onPress }) {
+  if (theme === 'primary') {
+    return (
+      <View
+        style={[
+          styles.buttonContainer,
+          { borderWidth: 4, borderColor: '#000000', borderRadius: 18 },
+        ]}
+      >
+        <Pressable
+          style={[styles.button, { backgroundColor: '#CCFFB1' }]}
+          onPress={onPress}
+        >
+          <Text style={[styles.buttonLabel, { color: '#000000' }]}>
+            {label}
+          </Text>
+        </Pressable>
+      </View>
+    )
+  } else if (theme === 'hurt') {
+    return (
+      <View
+        style={[
+          styles.buttonContainer,
+          { borderWidth: 4, borderColor: '#000000', borderRadius: 18 },
+        ]}
+      >
+        <Pressable
+          style={[styles.button, { backgroundColor: '#FFB1B1' }]}
+          onPress={onPress}
+        >
+          <Text style={[styles.buttonLabel, { color: '#000000' }]}>
+            {label}
+          </Text>
+        </Pressable>
+      </View>
+    )
+  } else if (theme === 'modal') {
+    return (
+      <View
+        style={[
+          styles.buttonContainer,
+          { borderWidth: 4, borderColor: '#000000', borderRadius: 18 },
+        ]}
+      >
+        <Pressable
+          style={[styles.button, { backgroundColor: '#D9F0FE' }]}
+          onPress={onPress}
+        >
+          <Text style={[styles.buttonLabel, { color: '#000000' }]}>
+            {label}
+          </Text>
+        </Pressable>
+      </View>
+    )
+  }
+
   return (
     <View style={styles.buttonContainer}>
       <Pressable
@@ -16,8 +73,9 @@ export default function Button({ label }) {
 const styles = StyleSheet.create({
   buttonContainer: {
     width: 320,
-    height: 68,
+    height: 80,
     marginHorizontal: 20,
+    marginTop: 20,
     alignItems: 'center',
     justifyContent: 'center',
     padding: 3,
@@ -34,7 +92,9 @@ const styles = StyleSheet.create({
     paddingRight: 8,
   },
   buttonLabel: {
-    color: '#fff',
-    fontSize: 16,
+    color: '#ffffff',
+
+    fontWeight: 'bold',
+    fontSize: 50,
   },
 })
