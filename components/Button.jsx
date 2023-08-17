@@ -1,5 +1,4 @@
 import { StyleSheet, View, Pressable, Text } from 'react-native'
-import FontAwesome from '@expo/vector-icons/FontAwesome'
 
 export default function Button({ label, theme, onPress }) {
   if (theme === 'primary') {
@@ -48,6 +47,24 @@ export default function Button({ label, theme, onPress }) {
       >
         <Pressable
           style={[styles.button, { backgroundColor: '#D9F0FE' }]}
+          onPress={onPress}
+        >
+          <Text style={[styles.buttonLabel, { color: '#000000' }]}>
+            {label}
+          </Text>
+        </Pressable>
+      </View>
+    )
+  } else if (theme === 'submit') {
+    return (
+      <View
+        style={[
+          styles.buttonContainer,
+          { borderWidth: 4, borderColor: '#000000', borderRadius: 18 },
+        ]}
+      >
+        <Pressable
+          style={[styles.button, { backgroundColor: '#C1FFAC' }]}
           onPress={onPress}
         >
           <Text style={[styles.buttonLabel, { color: '#000000' }]}>

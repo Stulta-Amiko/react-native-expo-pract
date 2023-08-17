@@ -1,20 +1,24 @@
-import { Modal, View, Text, StyleSheet, ScrollView } from 'react-native'
+import { Modal, View, StyleSheet, TextInput } from 'react-native'
+import { useState } from 'react'
 import Button from './Button'
 
-export default function FortuneModal({ isVisible, children, onClose }) {
+export default function RemarkModal({ isVisible, children, onClose }) {
+  const [number, onChangeNumber] = useState('')
   return (
     <View style={styles.container}>
       <Modal animationType='slide' transparent={true} visible={isVisible}>
         <View style={styles.modalContent}>
-          <ScrollView>
-            <Text style={styles.modalText}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem
-              ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua.
-            </Text>
-          </ScrollView>
-          <Button theme='modal' label='닫기' onPress={onClose} />
+          <TextInput
+            style={styles.input}
+            editable
+            multiline
+            numberOfLines={4}
+            maxLength={100}
+            onChangeText={onChangeNumber}
+            value={number}
+            placeholder={'어디가 아픈지 \n적어주세요.'}
+          />
+          <Button theme='submit' label='전송하기' onPress={onClose} />
         </View>
       </Modal>
     </View>
@@ -26,6 +30,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  input: {
+    height: 400,
+    width: 300,
+    margin: 12,
+    borderWidth: 1,
+    fontSize: 40,
+    padding: 10,
   },
   modalContent: {
     margin: 20,

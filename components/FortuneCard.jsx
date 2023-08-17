@@ -1,7 +1,10 @@
-import { StyleSheet, View, Pressable, Text } from 'react-native'
+import { StyleSheet, View, Pressable, Text, ScrollView } from 'react-native'
 import { useState } from 'react'
 import FortuneModal from './FortuneModal'
-import FontAwesome from '@expo/vector-icons/FontAwesome'
+
+const DUMMY_TEXT = [
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+]
 
 export default function FortuneCard({ label, theme }) {
   const [isModalVisible, setIsModalVisible] = useState(false)
@@ -22,15 +25,17 @@ export default function FortuneCard({ label, theme }) {
             styles.buttonContainer,
             {
               borderWidth: 4,
-              borderColor: '#000000',
+              borderColor: '#AAAAAA',
               backgroundColor: 'rgba(255, 255, 255, 0.5)',
               borderRadius: 18,
             },
           ]}
         >
-          <Text style={[styles.buttonLabel, { color: '#000000' }]}>
-            {label}
-          </Text>
+          <ScrollView>
+            <Text style={[styles.buttonLabel, { color: '#000000' }]}>
+              {DUMMY_TEXT[0].length > 50 ? DUMMY_TEXT[0] : DUMMY_TEXT[0]}
+            </Text>
+          </ScrollView>
         </View>
       </Pressable>
       <FortuneModal
@@ -65,8 +70,7 @@ const styles = StyleSheet.create({
   },
   buttonLabel: {
     color: '#ffffff',
-
-    fontWeight: 'bold',
-    fontSize: 50,
+    fontWeight: 'normal',
+    fontSize: 25,
   },
 })
